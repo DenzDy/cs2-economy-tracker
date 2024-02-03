@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap')
-$font-stack: Poppins
+$font-stack: Poppins, sans-serif
+$blue: #28397F
+$orange: #FBAC18
+$bold-font-weight: 700
+$green: #33853C
+$red: #7F2828
 body
     min-height: 100vh
     display: flex
@@ -9,13 +14,48 @@ body
     
 #card
     background: #F6F6F6
-    width: 70vw
+    width: 80vw
     height: 80vh
+    border-radius: 0.5rem
+    padding: 0.4rem
+    box-sizing: border-box
 #title
     font-family: $font-stack
     font-size: 1.5rem
-    font-weight: 600
+    font-weight: $bold-font-weight
 .orange-text
-    color: #FBAC18
+    color: $orange
 .blue-text
-    color: #28397F
+    color: $blue
+#buttons-div
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+.faction-button
+    box-sizing: border-box
+    padding: 0.25rem
+    width: 50px
+    height: 38px
+    font-family: $font-stack
+    font-weight: $bold-font-weight
+    color: white
+    border: 0
+    border-radius: 0.25rem
+#t-side-button
+    background: $orange
+#ct-side-button
+    background: $blue
+.end-round-button
+    box-sizing: border-box
+    padding: 0.25rem
+    width: 60px
+    height: 38px
+    font-family: $font-stack
+    font-weight: $bold-font-weight
+    color: white
+    border: 0
+    border-radius: 0.25rem
+#win-button
+    background: $green
+#lose-button
+    background: $red
