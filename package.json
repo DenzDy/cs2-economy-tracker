@@ -128,11 +128,13 @@
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
-    "file-loader": "^6.2.0"
+    "file-loader": "^6.2.0",
+    "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack --watch"
+    "build": "npx webpack --watch",
+    "start": "webpack serve --open"
   },
   "repository": {
     "type": "git",
