@@ -8,9 +8,14 @@ function update_ui(){
 document.getElementById("team").addEventListener("click", function(){
     if(document.getElementById("team").innerHTML == 'T'){
         change_team('CT');
+        document.getElementById("team").classList.add("ct");
+        document.getElementById("team").classList.remove("t");
+
     }
     else{
         change_team('T');
+        document.getElementById("team").classList.add("t")
+        document.getElementById("team").classList.remove("ct");
     }
     update_ui();
 });
