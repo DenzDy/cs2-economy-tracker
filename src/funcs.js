@@ -15,6 +15,11 @@ export function reset_all(){
   loss_bonus = 1400;
   console.log("Reset money");
 }
+export function update_money(){
+  console.log(current_money);
+  current_money = current_money > 16000 ? 16000 : current_money
+  return current_money;
+}
 export function change_team(side){
  team = side;
  reset_all();
@@ -62,9 +67,6 @@ export function bomb_explode_onclick(){
 export function bomb_plant_onclick(){
   bomb_plant = true;
 }
-export function next_round(){
-  current_money 
-}
 export function next_round_onclick(){
   if(team == 'T'){
     if(win){
@@ -73,13 +75,15 @@ export function next_round_onclick(){
       }
       else{
         current_money += 3250 - buy;
-        return;
       }
     }
     else{
-      current_money += loss_bonus;
+      current_money += loss_bonus - buy;
     }
     update_loss_bonus(win);
+    bomb_plant = false;
+    bomb_explode = false;
+    round_count++;
   }
 }
 
