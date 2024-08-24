@@ -11,6 +11,7 @@ let round_count = 1;
 let team = 'T';
 let prev_round_state = 0;
 let winstreak = 0;
+let weps_from_last = 0;
 export function reset_all(){
   current_money = 800;
   loss_bonus = 1400;
@@ -86,10 +87,10 @@ export function next_round_onclick(){
   if(team == 'T'){
     if(win){
       if(win_by_state == 1){
-        current_money = prev_round_state == 0 ? current_money + 3500 - buy : current_money + 3500;
+        current_money = weps_from_last == 0 ? current_money + 3500 - buy : current_money + 3500;
       }
       else{
-        current_money = prev_round_state == 0 ? current_money + 3250 - buy : current_money + 3250;
+        current_money =  weps_from_last == 0 ? current_money + 3250 - buy : current_money + 3250;
       }
     }
     else{
@@ -109,18 +110,23 @@ export function update_buy(buy){
   switch(buy){
     case "pistols":
       enemy_buy_onclick(0);
+      weps_from_last = 0;
       break;
     case "eco":
       enemy_buy_onclick(3);
+      weps_from_last = 0;
       break;
     case "smgs":
       enemy_buy_onclick(1);
+      weps_from_last = 0;
       break;
     case "rifles":
       enemy_buy_onclick(2);
+      weps_from_last = 0;
       break;
     case "lround":
       enemy_buy_onclick(3);
+      weps_from_last = 1;
       break;
   }
 }
