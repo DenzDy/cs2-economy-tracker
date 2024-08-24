@@ -8,26 +8,37 @@
 </head>
 
 <body>
-    <main>
-        <h1 class="title-styling">Eco.</h1>
+    <main id="main">
+        <h1 class="title-styling" id="title">Eco.</h1>
+
         <div class="dashboard">
             <div class="money-div">
                 <div id="money">$800</div>
                 <button id="team" class="t">T</button>
             </div>
             <div class="buttons">
+                
                 <div class="divider">
                     <button id="win">WIN</button>
                     <button id="lose">LOSE</button>
                 </div>
                 <div class="divider">
-                    <button id="bomb-plant">BOMB PLANTED</button>
-                    <button id="bomb-explode">BOMB EXPLODED</button>
+                    <select name="round-end-state" class="select-styling" id="round-end-state">
+                        <option disabled selected value>Select</option>
+                        <option value="bomb">Bomb (Defuse/Plant)</option>
+                        <option value="elim">Elimination</option>
+                        <option value="time">Time Run Out</option>
+                    </select>
                 </div>
                 <div class="divider">
-                    <button id="eco">ECO</button>
-                    <button id="rifles">RIFLES</button>
-                    <button id="smgs">SMG / HEAVY</button>
+                    <select name="enemy-buy" id="enemy-buy" class="select-styling">
+                        <option disabled selected value>Select</option>
+                        <option value="pistols">Pistols (Pistol Round)</option>
+                        <option value="eco">Eco</option>
+                        <option value="smgs">SMGs/Heavy/Galil etc.</option>
+                        <option value="rifles">Rifles</option>
+                        <option value="lround">Last Round Weapons</option>
+                    </select>
                 </div>
                 <button id="reset">RESET</button>
                 <button id="next-round">NEXT ROUND</button>

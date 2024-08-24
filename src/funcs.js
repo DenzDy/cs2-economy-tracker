@@ -3,18 +3,19 @@ import './style.sass';
 import CTSvg from './assets/CT.png';
 
 let current_money = 800;
-let bomb_plant = false;
-let bomb_explode = false;
-let win = false;
+let win_by_state = -1; // 0 - elim; 1 - bomb;
+let win = -1;
 let buy = 0; // 0 - eco, 2050 - half buy, 3700 - rifles
 let loss_bonus = 1400;
 let round_count = 1;
 let team = 'T';
 let prev_round_state = 0;
+let winstreak = 0;
 export function reset_all(){
   current_money = 800;
   loss_bonus = 1400;
   console.log("Reset money");
+  win = -1;
 }
 export function update_money(){
   console.log(current_money);
@@ -27,6 +28,9 @@ export function change_team(side){
 }
 export function get_team(){
   return team;
+}
+export function win_by_state_parser(inp){
+  win_by_state = inp;
 }
 export function match_end_onclick(winBool){
   win = winBool;
@@ -43,6 +47,10 @@ export function enemy_buy_onclick(buy_onclick){
       case 2:
         buy = 3700;
         break;
+      case 3:
+        buy = 0;
+        break;
+
     }
     console.log(buy);
     return;
@@ -69,31 +77,63 @@ export function update_loss_bonus(win_state){
     loss_bonus = loss_bonus + 500 > 3400 ? 3400 : loss_bonus + 500;   
   }
 }
-export function bomb_explode_onclick(){
-  bomb_explode = true;
-}
-export function bomb_plant_onclick(){
-  bomb_plant = true;
+function check_valid_input(){
+  if(win != -1 || win_by_state != -1){
+    return -1;
+  }  
 }
 export function next_round_onclick(){
   if(team == 'T'){
     if(win){
-      if(bomb_explode){
+      if(win_by_state == 1){
         current_money = prev_round_state == 0 ? current_money + 3500 - buy : current_money + 3500;
       }
       else{
         current_money = prev_round_state == 0 ? current_money + 3250 - buy : current_money + 3250;
-
       }
     }
     else{
-      current_money = prev_round_state == 1 ? current_money + loss_bonus : current_money + loss_bonus - buy;
+      winstreak = 0;
+      console.log('loss', loss_bonus);
+      current_money = prev_round_state == 1 && winstreak > 1 ? current_money + loss_bonus : current_money + loss_bonus - buy;
     }
     update_loss_bonus(win);
     prev_round_state = win;
-    bomb_plant = false;
-    bomb_explode = false;
+    winstreak++;
+    win_by_state = -1;
     round_count++;
+
   }
 }
-
+export function update_buy(buy){
+  switch(buy){
+    case "pistols":
+      enemy_buy_onclick(0);
+      break;
+    case "eco":
+      enemy_buy_onclick(3);
+      break;
+    case "smgs":
+      enemy_buy_onclick(1);
+      break;
+    case "rifles":
+      enemy_buy_onclick(2);
+      break;
+    case "lround":
+      enemy_buy_onclick(3);
+      break;
+  }
+}
+export function update_win_state(buy){
+  switch(buy){
+    case "elim":
+      win_by_state = 0;
+      break;
+    case "bomb":
+      win_by_state = 1;
+      break;
+    case "time":
+      win_by_state = 0;
+      break;
+  }
+}
