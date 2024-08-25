@@ -1,4 +1,4 @@
-import {change_team, enemy_buy_onclick, get_team, match_end_onclick, next_round_onclick, update_buy, update_money, update_win_state} from './funcs.js'
+import {change_team, enemy_buy_onclick, get_team, match_end_onclick, next_round_onclick, reset_all, update_buy, update_money, update_win_state} from './funcs.js'
 
 function update_ui(){
     document.getElementById("team").innerHTML = get_team();
@@ -65,5 +65,10 @@ function get_select_values(){
 document.getElementById("next-round").addEventListener("click", function(){
     get_select_values();
     next_round_onclick();
+    update_ui();
+});
+
+document.getElementById("reset").addEventListener("click", function(){
+    reset_all();
     update_ui();
 });

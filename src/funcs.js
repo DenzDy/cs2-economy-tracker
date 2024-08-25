@@ -16,6 +16,10 @@ export function reset_all(){
   current_money = 800;
   loss_bonus = 1400;
   console.log("Reset money");
+  winstreak = 0;
+  weps_from_last =0;
+  buy = 0;
+  win_by_state = 0;
   win = -1;
 }
 export function update_money(){
@@ -84,27 +88,25 @@ function check_valid_input(){
   }  
 }
 export function next_round_onclick(){
-  if(team == 'T'){
-    if(win){
-      if(win_by_state == 1){
-        current_money = weps_from_last == 0 ? current_money + 3500 - buy : current_money + 3500;
-      }
-      else{
-        current_money =  weps_from_last == 0 ? current_money + 3250 - buy : current_money + 3250;
-      }
+  if(win){
+    if(win_by_state == 1){
+      current_money = weps_from_last == 0 ? current_money + 3500 - buy : current_money + 3500;
     }
     else{
-      winstreak = 0;
-      console.log('loss', loss_bonus);
-      current_money = prev_round_state == 1 && winstreak > 1 ? current_money + loss_bonus : current_money + loss_bonus - buy;
+      current_money =  weps_from_last == 0 ? current_money + 3250 - buy : current_money + 3250;
     }
-    update_loss_bonus(win);
-    prev_round_state = win;
-    winstreak++;
-    win_by_state = -1;
-    round_count++;
-
   }
+  else{
+    winstreak = 0;
+    console.log('loss', loss_bonus);
+    current_money = prev_round_state == 1 && winstreak > 1 ? current_money + loss_bonus : current_money + loss_bonus - buy;
+  }
+  update_loss_bonus(win);
+  prev_round_state = win;
+  winstreak++;
+  win_by_state = -1;
+  round_count++;
+
 }
 export function update_buy(buy){
   switch(buy){
