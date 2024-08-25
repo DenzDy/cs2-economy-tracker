@@ -71,4 +71,5 @@ document.getElementById("next-round").addEventListener("click", function(){
 document.getElementById("reset").addEventListener("click", function(){
     reset_all();
     update_ui();
+    console.log("reset!!!!");
 });
