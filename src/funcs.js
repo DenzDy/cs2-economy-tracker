@@ -14,7 +14,7 @@ let winstreak = 0;
 let weps_from_last = 0;
 export function reset_all(){
   current_money = 800;
-  loss_bonus = 1400;
+  loss_bonus = 1900;
   console.log("Reset money");
   winstreak = 0;
   weps_from_last =0;
