@@ -1,0 +1,3 @@
+[submodule "dist"]
+    path = dist
+    url = git://github.com/DenzDy/cs2-economy-tracker.git
