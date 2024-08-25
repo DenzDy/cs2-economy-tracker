@@ -101,6 +101,7 @@ export function next_round_onclick(){
     console.log('loss', loss_bonus);
     current_money = prev_round_state == 1 && winstreak > 1 ? current_money + loss_bonus : current_money + loss_bonus - buy;
   }
+  current_money = win_by_state == 1 && team == 'T' ? current_money + 800 : current_money;
   update_loss_bonus(win);
   prev_round_state = win;
   winstreak++;
