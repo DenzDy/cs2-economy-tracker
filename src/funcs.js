@@ -20,6 +20,7 @@ export function reset_all(){
   weps_from_last =0;
   buy = 0;
   win_by_state = 0;
+  prev_round_state = 0;
   win = -1;
 }
 export function update_money(){
